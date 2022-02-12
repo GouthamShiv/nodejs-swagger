@@ -8,4 +8,13 @@ router.get('/getData', (req, res) => {
   res.send(req.query);
 });
 
+router.post('/login', (req, res) => {
+  const { id, password } = req.body;
+  log.debug('user login request :: ' + id);
+  const resp = {
+    token: `thisIsTheBearerTokenFor${id}`,
+  };
+  res.send(resp);
+});
+
 export { router };
