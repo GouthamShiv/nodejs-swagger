@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 
 const log = logger({
   //   prettyPrint: true,
+  level: 'debug',
   transport: {
     target: 'pino-pretty',
     options: {
