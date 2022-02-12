@@ -4,36 +4,7 @@ import { router } from './routes/app.routes';
 import swaggerUI from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import * as basicAuth from 'express-basic-auth';
-
-const options = {
-  swaggerDefinition: {
-    openapi: '3.0.1',
-    info: {
-      title: 'Swagger with NodeJS express tutorial',
-      version: '1.0.0',
-    },
-    servers: [
-      {
-        url: 'http://localhost:8082',
-      },
-    ],
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT',
-        },
-      },
-    },
-    security: [
-      {
-        bearerAuth: [],
-      },
-    ],
-  },
-  apis: ['./routes/*.ts'],
-};
+import { options } from './config/swagger.conf';
 
 const swaggerSpecs = swaggerJSDoc(options);
 
