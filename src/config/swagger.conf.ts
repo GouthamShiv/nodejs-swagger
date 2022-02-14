@@ -11,7 +11,7 @@ export const options = {
   },
   servers: [
     {
-      url: 'http://localhost:8082/api',
+      url: 'https://boiling-falls-56189.herokuapp.com/api',
     },
   ],
   host: 'localhost:8082',
