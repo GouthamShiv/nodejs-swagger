@@ -7,9 +7,15 @@
   "author": "Goutham",
   "license": "MIT",
   "scripts": {
+    "start": "node dist/index.js",
+    "postinstall": "tsc",
     "start:dev": "nodemon",
     "build": "tsc",
-    "build:prod": "tsc -p tsconfig.prod.json"
+    "build:prod": "tsc -p tsconfig.prod.json",
+    "deploy": "git add . && git commit -m Heroku && git push heroku master"
+  },
+  "engines": {
+    "node": "14.18.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
