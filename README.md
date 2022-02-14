@@ -4,3 +4,8 @@
 
 > This is just a demo / template to demonstrate how to enable token based authorization in NodeJS - Swagger
 > Implementation of JWT authentication is not the goal of this particular app
+
+### Worthy reference links
+
+- [How to set up a NodeJS project with TypeScript](https://www.digitalocean.com/community/tutorials/setting-up-a-node-project-with-typescript)
+- [Deploying TypeScript NodeJS app to Heroku](https://medium.com/developer-rants/deploying-typescript-node-js-applications-to-heroku-81dd75424ce0)
