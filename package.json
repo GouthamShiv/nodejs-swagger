@@ -12,7 +12,7 @@
     "start:dev": "nodemon",
     "build": "tsc",
     "build:prod": "tsc -p tsconfig.prod.json",
-    "deploy": "git add . && git commit -m Heroku && git push heroku master"
+    "deploy": "git push heroku master"
   },
   "engines": {
     "node": "14.18.3"
