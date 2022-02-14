@@ -11,12 +11,7 @@ export const options = {
   },
   servers: [
     {
-      url: 'http://localhost:8082',
-    },
-  ],
-  security: [
-    {
-      bearerAuth: [],
+      url: 'http://localhost:8082/api',
     },
   ],
   host: 'localhost:8082',
@@ -35,7 +30,27 @@ export const options = {
   consumes: ['application/json'],
   produces: ['application/json'],
   paths: {
-    '/api/login': {
+    '/': {
+      get: {
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+        tags: ['Greeting'],
+        summary: "API that returns 'Hello World!' message",
+        responses: {
+          '200': {
+            description: 'Ok',
+            schema: {},
+          },
+          '401': {
+            $ref: '#/responses/error/UnauthorizedError',
+          },
+        },
+      },
+    },
+    '/login': {
       post: {
         tags: ['Auth'],
         summary: 'For user login',
@@ -61,8 +76,13 @@ export const options = {
         },
       },
     },
-    '/api/getData': {
+    '/getData': {
       get: {
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
         tags: ['Main Data'],
         summary: 'Get main data',
         parameters: [
