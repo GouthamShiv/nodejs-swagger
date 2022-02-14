@@ -7,9 +7,9 @@ import { options } from './config/swagger.conf';
 
 const app = express();
 app.use(express.json());
-app.use('/', swaggerUI.serve, swaggerUI.setup(options));
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(options));
 app.use('/api', router);
+app.use('/', swaggerUI.serve, swaggerUI.setup(options));
 
 const PORT = process.env.PORT || 8082;
 app.listen(PORT, () => {
