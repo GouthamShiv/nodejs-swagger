@@ -4,7 +4,7 @@ import log from '../log/logger';
 
 const router = express.Router();
 
-router.get('/', requiresUser, (req, res) => {
+router.get('/greet', (req, res) => {
   log.debug('in root url');
   res.send('Hello World!');
 });

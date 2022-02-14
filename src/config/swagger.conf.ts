@@ -16,25 +16,24 @@ export const options = {
   ],
   tags: [
     {
-      name: 'Main Data',
-      description: 'APIs related to main data',
+      name: 'Auth',
+      description: 'API(s) for user authentication',
     },
     {
-      name: 'Auth',
-      description: 'APIs to user authentication',
+      name: 'Main Data',
+      description: 'API(s) related to main data',
+    },
+    {
+      name: 'Greeting',
+      description: "API to greet with the message 'Hello World!'",
     },
   ],
   schemes: ['http'],
   consumes: ['application/json'],
   produces: ['application/json'],
   paths: {
-    '/': {
+    '/greet': {
       get: {
-        security: [
-          {
-            bearerAuth: [],
-          },
-        ],
         tags: ['Greeting'],
         summary: "API that returns 'Hello World!' message",
         responses: {
