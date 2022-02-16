@@ -11,7 +11,10 @@ export const options = {
   },
   servers: [
     {
-      url: 'https://boiling-falls-56189.herokuapp.com/api',
+      url: 'https://boiling-falls-56189.herokuapp.com',
+    },
+    {
+      url: 'http://localhost:8082',
     },
   ],
   tags: [
@@ -32,7 +35,7 @@ export const options = {
   consumes: ['application/json'],
   produces: ['application/json'],
   paths: {
-    '/greet': {
+    '/api/greet': {
       get: {
         tags: ['Greeting'],
         summary: "API that returns 'Hello World!' message",
@@ -51,6 +54,7 @@ export const options = {
       post: {
         tags: ['Auth'],
         summary: 'For user login',
+        description: 'Logs in and returns an authentication cookie & bearer token',
         requestBody: {
           required: true,
           content: {
@@ -65,7 +69,6 @@ export const options = {
         responses: {
           '200': {
             description: 'Ok',
-            schema: {},
           },
           '401': {
             $ref: '#/responses/error/UnauthorizedError',
@@ -73,7 +76,76 @@ export const options = {
         },
       },
     },
-    '/getData': {
+    '/logged-in': {
+      get: {
+        tags: ['Auth'],
+        summary: 'For login confirmation and CSRF init',
+        responses: {
+          '200': {
+            description: 'Ok',
+            headers: {
+              'Set-Cookie': {
+                schema: {
+                  type: 'string',
+                  example: 'XSRF-TOKEN=abcde12345; Path=/; HttpOnly',
+                },
+              },
+            },
+          },
+          '401': {
+            $ref: '#/responses/error/UnauthorizedError',
+          },
+        },
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+      },
+    },
+    '/api/getData': {
+      post: {
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+        tags: ['Main Data'],
+        summary: 'Get main data',
+        parameters: [
+          {
+            name: 'X-XSRF-TOKEN',
+            in: 'header',
+            required: true,
+          },
+          {
+            name: 'pageNum',
+            in: 'query',
+            schema: {
+              type: 'integer',
+              default: 1,
+            },
+          },
+          {
+            name: 'pageLength',
+            in: 'query',
+            required: true,
+            schema: {
+              type: 'integer',
+              default: 10,
+            },
+          },
+        ],
+        responses: {
+          '200': {
+            description: 'Ok',
+            schema: {},
+          },
+          '401': {
+            $ref: '#/responses/error/UnauthorizedError',
+          },
+        },
+      },
       get: {
         security: [
           {
@@ -126,6 +198,11 @@ export const options = {
         type: 'http',
         scheme: 'bearer',
         bearerFormat: 'JWT',
+      },
+      cookieAuth: {
+        type: 'apiKey',
+        in: 'cookie',
+        name: 'X-XSRF-TOKEN',
       },
     },
     schemas: {

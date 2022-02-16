@@ -1,6 +1,6 @@
-import requiresUser from '../middleware/user';
 import express from 'express';
 import log from '../log/logger';
+import requiresUser from '../middleware/user';
 
 const router = express.Router();
 
@@ -12,21 +12,23 @@ router.get('/greet', (req, res) => {
 router.get('/getData', requiresUser, (req, res) => {
   log.debug('in /getData, req.query :: ' + JSON.stringify(req.query));
   const { pageNum, pageLength } = req.query;
-  res.send(req.query);
+  const resp = {
+    pageNum: pageNum,
+    pageLength: pageLength,
+  };
+  res.status(200);
+  res.send(resp);
 });
 
-router.post('/login', (req, res) => {
-  const { id, password } = req.body;
-  if (id === 'testUser' && password === 'testUser123') {
-    log.debug('user login request :: ' + id);
-    const resp = {
-      token: `thisIsAnExampleBearerTokenForAuth`,
-    };
-    res.send(resp);
-  } else {
-    res.status(400);
-    res.send('User with provided details is not registered');
-  }
+router.post('/getData', requiresUser, (req, res) => {
+  log.debug('in /getData, req.query :: ' + JSON.stringify(req.query));
+  const { pageNum, pageLength } = req.query;
+  const resp = {
+    pageNum: pageNum,
+    pageLength: pageLength,
+  };
+  res.status(200);
+  res.send(resp);
 });
 
 export { router };
