@@ -1,11 +1,10 @@
 import express from 'express';
 import log from './log/logger';
-import { router } from './routes/app.routes';
 import swaggerUI from 'swagger-ui-express';
-import * as basicAuth from 'express-basic-auth';
+import { router } from './routes/app.routes';
 import { options } from './config/swagger.conf';
 
-const app = express();
+const app = express().disable('x-powered-by');
 app.use(express.json());
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(options));
 app.use('/api', router);
