@@ -13,6 +13,9 @@ export const options = {
     {
       url: 'https://boiling-falls-56189.herokuapp.com/api',
     },
+    {
+      url: 'https://localhost:8082/api',
+    },
   ],
   tags: [
     {

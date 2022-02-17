@@ -47,3 +47,6 @@ Thumbs.db
 # template file
 template.ts
 .dccache
+
+# certs for local https
+/src/cert
