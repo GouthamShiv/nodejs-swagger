@@ -45,9 +45,9 @@
     "express": "^4.17.3",
     "express-basic-auth": "^1.2.1",
     "helmet": "^5.0.2",
-    "pino": "^7.10.0",
-    "pino-pretty": "^7.5.2",
-    "swagger-jsdoc": "^6.2.0",
+    "pino": "^7.8.0",
+    "pino-pretty": "^7.6.0",
+    "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.3.0"
   }
 }
